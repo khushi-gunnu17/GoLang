@@ -6,22 +6,21 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
-  res.status(200).send("Welcome to LearnCodeonline server")
+  res.status(200).send("Welcome to khushi server")
 })
 
 app.get('/get', (req, res) => {
-    res.status(200).json({message: "Hello from learnCodeonline.in"})
-  })
+  res.status(200).json({message: "Hello from Khushi"})
+})
 
 
 app.post('/post', (req, res) => {
-    let myJson = req.body;      // your JSON
-	
-	res.status(200).send(myJson);
+  let myJson = req.body;      // your JSON
+  res.status(200).send(myJson);
 })
 
 app.post('/postform', (req, res) => {
-    res.status(200).send(JSON.stringify(req.body));
+  res.status(200).send(JSON.stringify(req.body));
 })
   
 
