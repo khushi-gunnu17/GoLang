@@ -10,4 +10,4 @@ func main() {
 
 // lexer comes in and manually puts the semicolon at every place.
 
-// lexer in every langauge so yoy are following the grammar rules of the language.
+// lexer in every language so you are following the grammar rules of the language.
