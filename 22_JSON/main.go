@@ -20,7 +20,7 @@ func main() {
 	// encoding of the json
 	// EncodeJson()
 
-	// decoding of the josn
+	// decoding of the json
 	DecodeJson()
 }
 
