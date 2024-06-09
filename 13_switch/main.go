@@ -10,8 +10,10 @@ func main() {
 
 	fmt.Println("------switch------")
 	
-	rand.Seed(time.Now().UnixNano())		
-	diceNum := rand.Intn(6) + 1
+	src := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(src)
+
+	diceNum := r.Intn(6) + 1
 
 	fmt.Println("Value of dice is : ", diceNum)
 

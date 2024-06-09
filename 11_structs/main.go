@@ -10,8 +10,10 @@ func main() {
 
 	khushi := User{"Khushi", "Khushi@google.com", true, 20}
 	fmt.Println(khushi)
+	fmt.Println("")
 
 	fmt.Printf("Khushi details are : %+v\n", khushi)
+	fmt.Println("")
 	fmt.Printf("Name is : %v and Email is : %v\n", khushi.Name, khushi.Email)
 
 }
