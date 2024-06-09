@@ -11,6 +11,7 @@ func main() {
 
 	presentTime := time.Now()
 	// presentTimeNow := time.Now().Nanosecond()
+	// fmt.Println(presentTimeNow)
 
 	// this date is the standard for the formatting
 	// given inside the documentation as well

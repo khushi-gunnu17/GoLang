@@ -13,8 +13,8 @@ func main() {
 
 	fmt.Println("Fruit list is : ", fruitList)
 	fmt.Println("Fruit list is : ", len(fruitList))
-
-
+	fmt.Printf("Type of fruitlist is : %T\n", fruitList)
+	fmt.Println("")
 	
 	var vegList = [5]string{"Potato", "Cauliflower", "Mushroom"}
 

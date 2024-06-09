@@ -53,6 +53,7 @@ func main()  {
 	// no var style
 	numberOfUsers := 300000
 	fmt.Println(numberOfUsers)
+	fmt.Printf("Variable is of type : %T \n", numberOfUsers)
 	fmt.Println("")
 
 	

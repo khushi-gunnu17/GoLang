@@ -42,15 +42,6 @@ func main() {
 
 	r := mux.NewRouter()
 
-	// routing
-	r.HandleFunc("/", serveHome).Methods("Get")
-	r.HandleFunc("/courses", getAllCourses).Methods("Get")
-	r.HandleFunc("/course/{id}", getOneCourse).Methods("Get")
-	r.HandleFunc("/course-create", createOneCourse).Methods("POST")
-	r.HandleFunc("/course/{id}", updateOneCourse).Methods("PUT")
-	r.HandleFunc("/course/{id}", deleteOneCourse).Methods("DELETE")
-
-
 	// seeding of the data 
 	courses = append(courses, Course{
 		CourseId: "3", 
@@ -71,6 +62,15 @@ func main() {
 			Website: "go.dev",
 		},
 	})
+
+
+	// routing
+	r.HandleFunc("/", serveHome).Methods("Get")
+	r.HandleFunc("/courses", getAllCourses).Methods("Get")
+	r.HandleFunc("/course/{id}", getOneCourse).Methods("Get")
+	r.HandleFunc("/course-create", createOneCourse).Methods("POST")
+	r.HandleFunc("/course/{id}", updateOneCourse).Methods("PUT")
+	r.HandleFunc("/course/{id}", deleteOneCourse).Methods("DELETE")
 
 
 	// listening to a port
@@ -142,6 +142,9 @@ func createOneCourse(w http.ResponseWriter, r *http.Request)  {
 		return
 	}
 
+	// TODO : check only if the title is duplicate
+	// loop, title matches with course.coursename, JSON
+
 	// generate a unique id and convert that into the string
 	rand.Seed(time.Now().UnixNano())
 	course.CourseId = strconv.Itoa(rand.Intn(100))		// Itoa = format Integer
@@ -199,6 +202,8 @@ func deleteOneCourse(w http.ResponseWriter, r *http.Request)  {
 
 		if course.CourseId == params["id"] {
 			courses = append(courses[:index], courses[index+1:]...)
+			// TODO : send a confirm or deny response
+
 			break
 		}
 	}

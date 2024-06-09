@@ -11,7 +11,7 @@ func main() {
 	welcome := "Welcome to this directory."
 	fmt.Println(welcome)
 
-	// walrus operator is used coz you don't know what will be the datatype.
+	// walrus operator is used here coz you don't know what will be the datatype of the reader attribute.
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter the rating for the pizza : ")
 

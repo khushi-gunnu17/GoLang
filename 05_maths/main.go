@@ -8,6 +8,25 @@ import (
 	"crypto/rand"
 )
 
+const CHARSET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+func randomString(length int) (string, error)  {
+
+	b := make([]byte, length)
+
+	for i := range b {
+		num, err := rand.Int(rand.Reader, big.NewInt(int64(len(CHARSET))))
+
+		if err != nil {
+			return "", err
+		}
+
+		b[i] = CHARSET[num.Int64()]
+	}
+	return string(b), nil
+}
+
+
 func main() {
 
 	fmt.Println("---------maths----------")
@@ -26,5 +45,15 @@ func main() {
 	// random from crpto 
 	myRandomNum, _ := rand.Int(rand.Reader, big.NewInt(100))
 	fmt.Println(myRandomNum)
+
+	length := 10
+	randomStr, err := randomString(length)
+
+	if err != nil {
+		fmt.Println("Error generating random string:", err)
+		return
+	}
+
+	fmt.Println("Random String : ", randomStr)
 
 }

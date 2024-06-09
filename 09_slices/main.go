@@ -82,8 +82,16 @@ func main() {
 	fmt.Printf("capacity = %d\n", cap(numbers))
 	fmt.Println("")
 
+
+
 	// Create copy with only needed numbers
 	neededNumbers := numbers[:len(numbers)-10]
+	fmt.Println(neededNumbers)
+	fmt.Printf("length = %d\n", len(neededNumbers))
+	fmt.Printf("capacity = %d\n", cap(neededNumbers))
+	fmt.Println("")
+	
+	// creating copy
 	numbersCopy := make([]int, len(neededNumbers))
 	copy(numbersCopy, neededNumbers)
 
