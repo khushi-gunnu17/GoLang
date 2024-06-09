@@ -8,16 +8,15 @@ func main() {
 
 	khushi := User{"Khushi", "Khushi@google.com", true, 20}
 	fmt.Println(khushi)
+	fmt.Println("")
 
-	fmt.Printf("Khushi details are : %+v\n", khushi)
-	fmt.Printf("Name is : %v and Email is : %v\n", khushi.Name, khushi.Email)
-	
 	
 	khushi.GetStatus()
+	fmt.Println("")
 
 	khushi.NewMail()
 
-	// didn't change the email address in actuality
+	// didn't change the email address in actuality in the memory space
 	fmt.Println(khushi.Email)
 
 }
@@ -29,7 +28,7 @@ type User struct {
 	Age    int
 }
 
-// if planning to exporth this methid, syntax changes
+// if planning to export this methid, syntax changes
 func (u User) GetStatus() {
 	fmt.Println("Is user active? : ", u.Status)
 }
