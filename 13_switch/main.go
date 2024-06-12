@@ -8,7 +8,7 @@ import (
 
 func main() {
 
-	fmt.Println("------switch------")
+	fmt.Println("------switch-------")
 	
 	src := rand.NewSource(time.Now().UnixNano())
 	r := rand.New(src)

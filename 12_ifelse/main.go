@@ -10,7 +10,7 @@ import (
 
 func main() {
 
-	fmt.Println("-------if-else-------")
+	fmt.Println("-------if-else--------")
 
 	fmt.Print("Enter the login count : ")
 	reader := bufio.NewReader(os.Stdin)

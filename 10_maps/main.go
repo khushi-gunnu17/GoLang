@@ -7,7 +7,7 @@ func main() {
 	fmt.Println("Welcome to maps in golang")
 	fmt.Println("")
 
-	// key : value
+	// key : value 
 	languages := make(map[string]string)
 
 	languages["JS"] = "JavaScript"

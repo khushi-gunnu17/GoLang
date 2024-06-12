@@ -10,7 +10,7 @@ func main() {
 
 	khushi := User{"Khushi", "Khushi@google.com", true, 20}
 	fmt.Println(khushi)
-	fmt.Println("")
+	fmt.Println("") 
 
 	fmt.Printf("Khushi details are : %+v\n", khushi)
 	fmt.Println("")
