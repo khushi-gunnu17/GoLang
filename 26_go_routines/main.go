@@ -74,7 +74,9 @@ func getStatusCode(endpoint string)  {
 
 // Mutex = Mutual Exclusion Lock = It provides you a lock over the memory.
 
-// its purpose is that it locks the memory till that one go routine is working and till the time is writing anything inside that, it doesn't allow anybody else to use the memory. 
+// A programming construct that ensures only one part of the program (one goroutine/thread) can access the shared resource at a time.
+
+// its purpose is that it locks the memory till that one go routine is working and till the time it is writing anything inside the memory, it doesn't allow anybody else to use the memory. 
 
 
 
