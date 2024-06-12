@@ -30,6 +30,7 @@ func main() {
 	fmt.Printf("The type of qparams are: %T\n", qparams)
 	fmt.Println(qparams["coursename"])
 	fmt.Println(qparams["paymentid"])
+	fmt.Println("")
 
 	for _, val := range qparams {
 		fmt.Println("Param is : ", val)
@@ -48,8 +49,9 @@ func main() {
 		RawPath: "user=khushi",
 	}
 
-	anotherURL := partsOfUrl.String()
-	fmt.Println(anotherURL)
+	createdUrl := partsOfUrl.String()
+	fmt.Println(createdUrl)
+	fmt.Printf("The type of created url is : %T\n", createdUrl)
 	fmt.Println("")
 
 }

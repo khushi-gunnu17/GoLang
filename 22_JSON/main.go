@@ -5,12 +5,13 @@ import (
 	"fmt"
 )
 
+// can provide json formatting accordingly
 type course struct {
-	Name     string	`json:"coursename"`
-	Price    int	
-	Platform string	`json:"website"`
-	Password string	`json:"-"`
-	Tags     []string	`json:"tags,omitempty"`
+	Name     string `json:"coursename"`
+	Price    int
+	Platform string   `json:"website"`
+	Password string   `json:"-"`
+	Tags     []string `json:"tags,omitempty"`
 }
 
 func main() {
@@ -32,8 +33,9 @@ func EncodeJson() {
 		{"ANgular Bootcamp", 299, "LearnCodeOnline.in", "huceiua", nil},
 	}
 
-	// package this data as JSON data 
+	// packaging this data as JSON data
 
+	// MarshalIndent for indentation
 	finaljson, err := json.MarshalIndent(myCourses, "", "\t")
 
 	if err != nil {
@@ -45,8 +47,8 @@ func EncodeJson() {
 }
 
 
-func DecodeJson()  {
-	
+func DecodeJson() {
+
 	jsonDataFromWeb := []byte(`
 		{
 			"coursename": "ReactJS Bootcamp",
@@ -75,6 +77,7 @@ func DecodeJson()  {
 
 	// if you don't know what type of data will be coming into the map, you can add interface to it.
 	var myOnlineData map[string]interface{}
+
 	
 	json.Unmarshal(jsonDataFromWeb, &myOnlineData)
 

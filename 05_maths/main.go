@@ -37,15 +37,16 @@ func main() {
 	fmt.Println("The sum is : ", myNumOne + int(myNumTwo))
 
 
-	// random number
+	// random number - outdated / deprecated
 	// rand.Seed(time.Now().UnixNano())
 	// fmt.Println(rand.Intn(5) + 1)
 
 
 	// random from crpto 
 	myRandomNum, _ := rand.Int(rand.Reader, big.NewInt(100))
-	fmt.Println(myRandomNum)
+	fmt.Println("The random number is : ", myRandomNum)
 
+	// way to generate random strign from a function
 	length := 10
 	randomStr, err := randomString(length)
 

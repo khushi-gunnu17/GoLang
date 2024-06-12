@@ -10,7 +10,7 @@ import (
 
 func main() {
 
-	fmt.Println("-----------web requests------------")
+	fmt.Println("-----------web verb requests------------")
 
 	// PerformGetRequest()
 
@@ -78,6 +78,7 @@ func PerformPostJSONRequest()  {
 }
 
 
+// post request in encoded format
 func PerformPostFormRequests()  {
 	
 	const MYURL = "http://localhost:8000/postform"

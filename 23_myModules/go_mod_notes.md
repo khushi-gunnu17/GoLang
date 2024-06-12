@@ -8,7 +8,7 @@
 
 - in cache all the packages which we are installing goes into it
 
-- go build 
+- go build  - to make the project ready for the production
 
 - go mod opertions are expensive.
 
@@ -20,13 +20,13 @@
 
 - go list all
 
-- go list 
-
 - go list -m all
 
 - go list -m -versions github.com/gorilla/mux
 
 - go mod why github.com/gorilla/mux
+
+- go mod graph - gives us all the graph of the dependencies
 
 - go mod edit -go 1.16 - changes the version
 
@@ -36,4 +36,4 @@
 
 - go run main.go = brings everything from the web or cache 
 
-- go run mod=vendor main.go 
+- go run -mod=vendor main.go  - then it first look into the vendor and brings everything from there and not from web.
