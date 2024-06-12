@@ -8,13 +8,14 @@ import (
 	"mongoapi/model"
 	"net/http"
 
+	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-const CONNECTION_STRING = "mongodb+srv://khushiastrogeek:s2otFs8xQueOcSc0@mongodb-go.rtbazij.mongodb.net/?retryWrites=true&w=majority&appName=mongodb-go"
+const CONNECTION_STRING = "mongodb+srv://khushiastrogeek:khushicosmos9@mongodb-go.rtbazij.mongodb.net/?retryWrites=true&w=majority&appName=mongodb-go"
 
 const DBNAME = "Netflix"
 
@@ -25,13 +26,13 @@ var collection *mongo.Collection
 
 
 // connect with mongoDb
-// initialization method, only runs for one time and at the very start
+// initialization method, only runs for one time and at the very start, special method in golang
 func init() {
 
 	// client option
 	clientOption := options.Client().ApplyURI(CONNECTION_STRING)
 
-	// connect to mongodb
+	// connecting to mongodb
 	client, err := mongo.Connect(context.TODO(), clientOption)
 
 	if err != nil {
@@ -43,18 +44,19 @@ func init() {
 	collection = client.Database(DBNAME).Collection(COLLECTION_NAME)
 
 	// collection instance
-	fmt.Println("Collection reference is ready.")
+	fmt.Println("Collection reference/instance is ready.")
 
 }
 
 
 
-// helper methods of mongoDb - file
+// helper methods of mongoDb - should be in another file
 
 // insert one record
-// model from package name
-func insertOneMovie(movie model.Netflix) {
+// lowercase functions as we are not exporting them
+func insertOneMovie(movie model.Netflix) {			// model name from package name
 
+	// you have to always pass the context, whenever you are doing any database operations
 	inserted, err := collection.InsertOne(context.Background(), movie)
 
 	if err != nil {
@@ -66,11 +68,14 @@ func insertOneMovie(movie model.Netflix) {
 }
 
 
+
 // update one record
 func updateOneMovie(movieId string) {
 
-	id, _ := primitive.ObjectIDFromHex(movieId)
+	id, _ := primitive.ObjectIDFromHex(movieId)			// converts string into the valid ObjectID
 
+	// bson.M = Not case sensitive 
+	// bson.D = for ordered elements
 	filter := bson.M{"_id": id}
 	update := bson.M{"$set": bson.M{"watched" : true}}
 
@@ -85,8 +90,9 @@ func updateOneMovie(movieId string) {
 }
 
 
+
 // deleting a record
-func deleteOneRecord(movieId string)  {
+func deleteOneMovie(movieId string)  {
 
 	id, _ := primitive.ObjectIDFromHex(movieId)
 
@@ -103,10 +109,11 @@ func deleteOneRecord(movieId string)  {
 }
 
 
-// delete all records fro mongoDb
-func deleteAllRecords() int64 {
 
-	deleteResult, err := collection.DeleteMany(context.Background(), bson.D{{}}, nil)
+// delete all records from mongoDb
+func deleteAllMovies() int64 {
+
+	deleteResult, err := collection.DeleteMany(context.Background(), bson.D{{}}, nil)		// nil for options
 
 	if err!= nil {
 		log.Fatal(err)
@@ -118,9 +125,11 @@ func deleteAllRecords() int64 {
 }
 
 
+
 // get all movies from db
 func getAllMovies() []primitive.M {
 
+	// cursor is a big gigantic object on which you can loop through and get the data.
 	cursor, err := collection.Find(context.Background(), bson.D{{}})
 
 	if err != nil {
@@ -129,6 +138,7 @@ func getAllMovies() []primitive.M {
 
 	var movies []primitive.M
 
+	// the loop will keep on giving you values as long as it has values
 	for cursor.Next(context.Background()) {
 		var movie bson.M
 
@@ -148,7 +158,9 @@ func getAllMovies() []primitive.M {
 }
 
 
-// actual controllers - this file
+
+
+// actual controllers - should be in this file only
 
 func GetAllMyMovies(w http.ResponseWriter, r *http.Request)  {
 
@@ -159,11 +171,61 @@ func GetAllMyMovies(w http.ResponseWriter, r *http.Request)  {
 }
 
 
-func createMovie(w http.ResponseWriter, r *http.Request)  {
+
+func CreateMovie(w http.ResponseWriter, r *http.Request)  {
 
 	w.Header().Set("Content-Type", "application/x-www-form-urlencode")
 	w.Header().Set("Allow-Control-Allow-Methods", "POST")
 	
+	var movie model.Netflix
+
+	_ = json.NewDecoder(r.Body).Decode(&movie)
+
+	insertOneMovie(movie)
+
+	json.NewEncoder(w).Encode(movie)
+
+}
+
+
+
+func MarkAsWatched(w http.ResponseWriter, r *http.Request)  {
+
+	w.Header().Set("Content-Type", "application/x-www-form-urlencode")
+	w.Header().Set("Allow-Control-Allow-Methods", "PUT")
+
+	params := mux.Vars(r)
+
+	updateOneMovie(params["id"])
+
+	json.NewEncoder(w).Encode(params["id"])
 	
+}
+
+
+
+func DeleteAMovie(w http.ResponseWriter, r *http.Request) {
 	
+	w.Header().Set("Content-Type", "application/x-www-form-urlencode")
+	w.Header().Set("Allow-Control-Allow-Methods", "DELETE")
+
+	params := mux.Vars(r)
+
+	deleteOneMovie(params["id"])
+
+	json.NewEncoder(w).Encode(params["id"])
+
+}
+
+
+
+func DeleteAllMovies(w http.ResponseWriter, r *http.Request) {
+	
+	w.Header().Set("Content-Type", "application/x-www-form-urlencode")
+	w.Header().Set("Allow-Control-Allow-Methods", "DELETE")
+
+	count := deleteAllMovies()
+
+	json.NewEncoder(w).Encode(count)
+
 }
