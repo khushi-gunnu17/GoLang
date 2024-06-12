@@ -97,14 +97,21 @@ Almost everything
 - Array is very less used in the array
 
 
+## Concurrency vs Parallelism
+- Parallelism is doing all the things at once.
+- Concurrency is switching between the tasks.
 
-<!-- GOOS=windows : The term 'GOOS=windows' is not recognized as the name of 
-a cmdlet, function, script file, or operable program. Check the spelling 
-of the name, or if a path was included, verify that the path is correct 
-and try again.
-At line:1 char:1
-+ GOOS="windows"  go build
-+ ~~~~~~~~~~~~~~
-    + CategoryInfo          : ObjectNotFound: (GOOS=windows:String) [],  
-   CommandNotFoundException
-    + FullyQualifiedErrorId : CommandNotFoundException -->
+
+## Go routines
+- Go routines is the way how you achieve the parallelism. 
+- Managed by Go runtime
+- Flexible stack - 2KB
+
+
+## Threads
+- Managed by OS
+- Fixed stack - 1MB
+
+
+## Motto of Golang
+Do not communicate by sharing memory; instead, share memory by communicating
