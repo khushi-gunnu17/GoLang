@@ -151,7 +151,7 @@ func createOneCourse(w http.ResponseWriter, r *http.Request)  {
 	}
 
 	// checking if the title is duplicate
-	// loop, title matches with course.coursename, JSON
+	// loop, title matches with course.coursename, then sending the JSON response
 	for _, existingCourse := range courses {
 		if existingCourse.CourseName == course.CourseName {
 			json.NewEncoder(w).Encode("Course title already exists")
